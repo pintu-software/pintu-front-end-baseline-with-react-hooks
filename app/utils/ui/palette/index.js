@@ -10,7 +10,7 @@ export const textColor = {
   primary: '#1d1d1b',
   secondary: '#565654',
   tertiary: '#a0a0a0',
-  inverse: '#fffff',
+  inverse: '#ffffff',
   error: '#d40000',
   main: '#e8511d',
   disabled: '#dddddd',
