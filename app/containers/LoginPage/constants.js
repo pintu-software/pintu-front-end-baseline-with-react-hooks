@@ -3,5 +3,6 @@
  * LoginPage constants
  *
  */
-
-export const DEFAULT_ACTION = 'app/LoginPage/DEFAULT_ACTION';
+export const PREFIX = 'app/LoginPage';
+export const CHANGE_EMAIL = `${PREFIX}/CHANGE_EMAIL`;
+export const CHANGE_PASSWORD = `${PREFIX}/CHANGE_PASSWORD`;

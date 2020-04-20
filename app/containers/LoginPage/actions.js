@@ -4,10 +4,11 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import { CHANGE_EMAIL } from './constants';
 
-export function defaultAction() {
+export function changeEmail(email) {
   return {
-    type: DEFAULT_ACTION,
+    type: CHANGE_EMAIL,
+    email,
   };
 }

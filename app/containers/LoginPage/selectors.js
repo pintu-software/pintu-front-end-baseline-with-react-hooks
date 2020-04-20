@@ -7,19 +7,10 @@ import { initialState } from './reducer';
 
 const selectLoginPageDomain = state => state.loginPage || initialState;
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by LoginPage
- */
-
-const makeSelectLoginPage = () =>
+const makeSelectForm = () =>
   createSelector(
     selectLoginPageDomain,
-    substate => substate,
+    substate => substate.form,
   );
 
-export default makeSelectLoginPage;
-export { selectLoginPageDomain };
+export { selectLoginPageDomain, makeSelectForm };

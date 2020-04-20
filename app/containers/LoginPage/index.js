@@ -13,33 +13,54 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectLoginPage from './selectors';
+
+import Button from 'components/Button';
+import { InputField } from 'components/Form';
+
+import { changeEmail } from './actions';
+import { makeSelectForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function LoginPage() {
-  useInjectReducer({ key: 'loginPage', reducer });
-  useInjectSaga({ key: 'loginPage', saga });
+const key = 'login';
+
+export function LoginPage({ form, onChangeEmail }) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   return (
     <div>
+      <Button>Test</Button>
+      <InputField
+        label="Email Address"
+        type="email"
+        name="email"
+        placeholder="Enter email address"
+        onChange={onChangeEmail}
+        value={form.email}
+        // error={error}
+      />
       <FormattedMessage {...messages.header} />
     </div>
   );
 }
 
 LoginPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  form: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }),
+  onChangeEmail: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginPage: makeSelectLoginPage(),
+  form: makeSelectForm(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onChangeEmail: evt => dispatch(changeEmail(evt.target.value)),
   };
 }
 
