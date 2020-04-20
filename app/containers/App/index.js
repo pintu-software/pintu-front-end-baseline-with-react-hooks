@@ -41,9 +41,9 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />
-        <Route exact path="/login" component={LoginPage} />
       </Switch>
       <Footer />
       <GlobalStyle />
