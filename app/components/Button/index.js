@@ -8,36 +8,45 @@
 
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { ThemeProvider } from '@material-ui/core/styles';
+import MUIButton from '@material-ui/core/Button';
+import theme from 'utils/ui/theme';
 
-import A from './A';
-import StyledButton from './StyledButton';
-import Wrapper from './Wrapper';
+const Wrapper = styled.div`
+  width: 100%;
+  text-align: center;
+`;
 
-function Button(props) {
-  // Render an anchor tag
-  let button = (
-    <A href={props.href} onClick={props.onClick}>
-      {Children.toArray(props.children)}
-    </A>
+function Button({
+  color = 'default',
+  onClick,
+  children,
+  component = 'button',
+  fullWidth = false,
+}) {
+  return (
+    <Wrapper>
+      <ThemeProvider theme={theme}>
+        <MUIButton
+          color={color}
+          onClick={onClick}
+          component={component}
+          fullWidth={fullWidth}
+        >
+          {Children.toArray(children)}
+        </MUIButton>
+      </ThemeProvider>
+    </Wrapper>
   );
-
-  // If the Button has a handleRoute prop, we want to render a button
-  if (props.handleRoute) {
-    button = (
-      <StyledButton onClick={props.handleRoute}>
-        {Children.toArray(props.children)}
-      </StyledButton>
-    );
-  }
-
-  return <Wrapper>{button}</Wrapper>;
 }
 
 Button.propTypes = {
-  handleRoute: PropTypes.func,
-  href: PropTypes.string,
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
+  component: PropTypes.oneOf(['button', 'submit']),
+  fullWidth: PropTypes.bool,
 };
 
 export default Button;
