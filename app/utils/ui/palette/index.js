@@ -4,6 +4,7 @@ export const primary = {
   dark: '#dc653c',
   light: '#4f4f9c',
   white: '#ffffff',
+  disabled: '#dddddd',
 };
 
 export const textColor = {
