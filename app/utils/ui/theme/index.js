@@ -21,17 +21,31 @@ const theme = createMuiTheme({
         '&:hover': {
           background: primary.darker,
         },
+        '&:disabled': {
+          background: primary.disabled,
+          cursor: 'not-allowed',
+          pointerEvents: 'auto',
+          '&:hover': {
+            background: primary.disabled,
+          },
+        },
       },
       textSecondary: {
         ...baseButtonStyles,
         color: textColor.main,
         background: 'transparent',
         border: `1px solid ${primary.main}`,
-        borderColor: primary.main,
         '&:hover': {
           background: 'transparent',
-          borderColor: primary.darker,
           border: `1px solid ${primary.darker}`,
+        },
+        '&:disabled': {
+          border: `1px solid ${primary.disabled}`,
+          cursor: 'not-allowed',
+          pointerEvents: 'auto',
+          '&:hover': {
+            border: `1px solid ${primary.disabled}`,
+          },
         },
       },
     },
