@@ -2,14 +2,20 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { fontSize } from '../typography';
 import { primary, textColor } from '../palette';
 
+const baseButtonStyles = {
+  fontFamily: 'Lato',
+  fontSize: fontSize.md,
+  textTransform: 'capitalize',
+  borderRadius: 4,
+  padding: '0.5em 2em',
+};
+
 const theme = createMuiTheme({
   /** When the configuration variables aren't powerful enough, you can take advantage of the overrides key of the theme to potentially change every single style injected by Material-UI into the DOM.  */
   overrides: {
     MuiButton: {
       text: {
-        fontSize: fontSize.md,
-        borderRadius: 4,
-        padding: '0.5em 2em',
+        ...baseButtonStyles,
         color: textColor.inverse,
         background: primary.main,
         '&:hover': {
@@ -17,9 +23,7 @@ const theme = createMuiTheme({
         },
       },
       textSecondary: {
-        fontSize: fontSize.md,
-        borderRadius: 4,
-        padding: '0.5em 2em',
+        ...baseButtonStyles,
         color: textColor.main,
         background: 'transparent',
         border: `1px solid ${primary.main}`,
