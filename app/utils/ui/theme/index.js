@@ -7,7 +7,7 @@ const baseButtonStyles = {
   fontSize: fontSize.md,
   textTransform: 'capitalize',
   borderRadius: 4,
-  padding: '0.5em 2em',
+  padding: '0.25em 2.5em',
 };
 
 const theme = createMuiTheme({
@@ -51,7 +51,12 @@ const theme = createMuiTheme({
     },
     MuiTextField: {
       root: {
-        fontSize: fontSize.md,
+        '& label.Mui-focused': {
+          color: primary.main,
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: primary.main,
+        },
       },
     },
   },
@@ -59,6 +64,9 @@ const theme = createMuiTheme({
   props: {
     MuiButtonBase: {
       disableRipple: true,
+    },
+    MuiInputLabel: {
+      shrink: true,
     },
   },
 });
