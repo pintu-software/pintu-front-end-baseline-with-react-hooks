@@ -17,7 +17,6 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginPage from 'containers/LoginPage/Loadable';
-
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -25,13 +24,17 @@ const AppWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  // padding: 0 16px;
+  padding: 0 16px;
   flex-direction: column;
+
+  @media (min-width: 960px) {
+    padding: 60px 16px;
+  }
 `;
 
 export default function App() {
   return (
-    <AppWrapper>
+    <>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
@@ -39,14 +42,16 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+      <AppWrapper>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route path="/features" component={FeaturePage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+      </AppWrapper>
       <Footer />
       <GlobalStyle />
-    </AppWrapper>
+    </>
   );
 }
