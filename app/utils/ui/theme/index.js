@@ -51,6 +51,7 @@ const theme = createMuiTheme({
     },
     MuiTextField: {
       root: {
+        minWidth: '260px',
         '& label.Mui-focused': {
           color: primary.main,
         },
