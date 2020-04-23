@@ -35,8 +35,7 @@ const Wrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(48, 82, 120, 0.16);
   width: 100%;
   padding: 24px;
-  margin: 0 auto;
-  margin-top: 8px;
+  margin: auto;
 
   @media (min-width: 960px) {
     padding: 32px;
