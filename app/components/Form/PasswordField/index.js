@@ -6,13 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import theme from 'utils/ui/theme';
 
 function PasswordField({
   label,
@@ -24,30 +22,28 @@ function PasswordField({
   showPassword,
 }) {
   return (
-    <ThemeProvider theme={theme}>
-      <TextField
-        label={label}
-        placeholder={`Enter ${label}`}
-        type={showPassword ? 'text' : 'password'}
-        name={name}
-        id={name}
-        onChange={onChange}
-        value={value}
-        error={error}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={onClickShowPassword}
-              >
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </ThemeProvider>
+    <TextField
+      label={label}
+      placeholder={`Enter ${label}`}
+      type={showPassword ? 'text' : 'password'}
+      name={name}
+      id={name}
+      onChange={onChange}
+      value={value}
+      error={error}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={onClickShowPassword}
+            >
+              {showPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 }
 

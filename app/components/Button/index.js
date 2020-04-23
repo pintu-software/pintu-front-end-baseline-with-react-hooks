@@ -7,9 +7,7 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ThemeProvider } from '@material-ui/core/styles';
 import MUIButton from '@material-ui/core/Button';
-import theme from 'utils/ui/theme';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,17 +24,15 @@ function Button({
 }) {
   return (
     <Wrapper>
-      <ThemeProvider theme={theme}>
-        <MUIButton
-          color={color}
-          onClick={onClick}
-          component={component}
-          fullWidth={fullWidth}
-          disabled={disabled}
-        >
-          {Children.toArray(children)}
-        </MUIButton>
-      </ThemeProvider>
+      <MUIButton
+        color={color}
+        onClick={onClick}
+        component={component}
+        fullWidth={fullWidth}
+        disabled={disabled}
+      >
+        {Children.toArray(children)}
+      </MUIButton>
     </Wrapper>
   );
 }
