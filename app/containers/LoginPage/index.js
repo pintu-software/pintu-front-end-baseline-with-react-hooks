@@ -8,7 +8,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -27,7 +27,7 @@ import { changeEmail } from './actions';
 import { makeSelectForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-// import messages from './messages';
+import messages from './messages';
 
 const Wrapper = styled.div`
   background: #fff;
@@ -71,7 +71,9 @@ export function LoginPage() {
       <Grid container direction="column" alignItems="center" spacing={4}>
         <Grid item xs={12}>
           <Typography variant="h2">
-            Login to <b style={{ color: textColor.main }}>{APP_NAME}</b>
+            <FormattedMessage {...messages.loginTo} />
+            &nbsp;
+            <b style={{ color: textColor.main }}>{APP_NAME}</b>
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -96,7 +98,9 @@ export function LoginPage() {
           />
         </Grid>
         <Grid item>
-          <Button>Login</Button>
+          <Button>
+            <FormattedMessage {...messages.login} />
+          </Button>
         </Grid>
       </Grid>
     </Wrapper>
