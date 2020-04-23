@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: 'Lato';
+    font-family: 'Roboto';
     line-height: 1.5em;
   }
 `;

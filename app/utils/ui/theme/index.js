@@ -3,7 +3,7 @@ import { fontSize } from '../typography';
 import { primary, textColor } from '../palette';
 
 const baseButtonStyles = {
-  fontFamily: 'Lato',
+  fontFamily: 'Roboto',
   fontSize: fontSize.md,
   textTransform: 'capitalize',
   borderRadius: 4,
