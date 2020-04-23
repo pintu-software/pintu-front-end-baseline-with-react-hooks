@@ -13,8 +13,10 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { APP_NAME } from 'utils/constants';
 
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
@@ -49,7 +51,10 @@ export function LoginPage() {
 
   return (
     <Grid container direction="column" alignItems="center" spacing={3}>
-      <Grid item>
+      <Grid item xs={12}>
+        <Typography>Login to {APP_NAME}</Typography>
+      </Grid>
+      <Grid item xs={12}>
         <InputField
           label="Email Address"
           type="email"
@@ -59,7 +64,7 @@ export function LoginPage() {
           // error={error}
         />
       </Grid>
-      <Grid item>
+      <Grid item xs={12}>
         <PasswordField
           label="Password"
           name="password"
