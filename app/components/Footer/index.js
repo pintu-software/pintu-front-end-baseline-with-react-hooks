@@ -1,27 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-
 import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
+import Typography from '@material-ui/core/Typography';
+import { common } from 'utils/ui/palette';
 import messages from './messages';
+
+const Wrapper = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+  background: ${common.white};
+`;
 
 function Footer() {
   return (
     <Wrapper>
       <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
         <LocaleToggle />
       </section>
       <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
+        <Typography>
+          <FormattedMessage
+            {...messages.authorMessage}
+            values={{
+              author: <A href="https:pintu.dk">Pintu Software Sdn. Bhd.</A>,
+            }}
+          />
+        </Typography>
       </section>
     </Wrapper>
   );
