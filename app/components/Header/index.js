@@ -26,8 +26,13 @@ const StyledHeader = styled.header`
   padding: 0;
   background: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(48, 82, 120, 0.03);
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: 960px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 function Header() {
@@ -44,9 +49,7 @@ function Header() {
   return (
     <Wrapper>
       <StyledHeader>
-        <div
-          style={{ display: 'flex', alignItems: 'center', paddingLeft: '20px' }}
-        >
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link to="/">
             <img
               src={Logo}
@@ -61,7 +64,6 @@ function Header() {
             display: 'flex',
             flex: 1,
             alignItems: 'center',
-            paddingLeft: '20px',
           }}
         >
           {/* <p>Dashboard</p>
@@ -71,13 +73,13 @@ function Header() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            paddingRight: '20px',
           }}
         >
           <Button
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            style={{ backgroundColor: 'transparent', color: 'black' }}
           >
             <AccountCircle fontSize="large" />
             <p style={{ margin: '0 7px' }}>Test User</p>
@@ -100,7 +102,7 @@ function Header() {
               horizontal: 'center',
             }}
           >
-            <MenuItem style={{ width: '160px' }} onClick={handleClose}>
+            <MenuItem style={{ width: '222px' }} onClick={handleClose}>
               Logout
             </MenuItem>
           </Menu>
