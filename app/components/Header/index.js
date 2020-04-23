@@ -101,9 +101,8 @@ function Header() {
             }}
           >
             <MenuItem style={{ width: '160px' }} onClick={handleClose}>
-              Profile
+              Logout
             </MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
           </Menu>
         </div>
       </StyledHeader>
