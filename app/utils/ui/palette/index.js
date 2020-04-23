@@ -1,20 +1,22 @@
 export const primary = {
-  main: '#e8511d',
-  darker: '#ce4415',
-  dark: '#dc653c',
-  light: '#4f4f9c',
-  white: '#ffffff',
-  disabled: '#dddddd',
+  main: '#312A74',
+  dark: '#1D195E',
+  light: '#C1B6D5',
+};
+
+export const common = {
+  white: '#FFFFFF',
+  disabled: '#DDDDDD',
 };
 
 export const textColor = {
-  primary: '#1d1d1b',
+  primary: '#1D1D1B',
   secondary: '#565654',
-  tertiary: '#a0a0a0',
-  inverse: '#ffffff',
-  error: '#d40000',
-  main: '#e8511d',
-  disabled: '#dddddd',
+  tertiary: '#A0A0A0',
+  inverse: '#FFFFFF',
+  error: '#D40000',
+  main: '#312A74',
+  disabled: '#DDDDDD',
 };
 
 const palette = {

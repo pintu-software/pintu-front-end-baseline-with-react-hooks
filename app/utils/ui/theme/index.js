@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { fontSize } from '../typography';
-import { primary, textColor } from '../palette';
+import { primary, common, textColor } from '../palette';
 
 const baseButtonStyles = {
   fontFamily: 'Roboto',
@@ -19,14 +19,14 @@ const theme = createMuiTheme({
         color: textColor.inverse,
         background: primary.main,
         '&:hover': {
-          background: primary.darker,
+          background: primary.dark,
         },
         '&:disabled': {
-          background: primary.disabled,
+          background: common.disabled,
           cursor: 'not-allowed',
           pointerEvents: 'auto',
           '&:hover': {
-            background: primary.disabled,
+            background: common.disabled,
           },
         },
       },
@@ -37,21 +37,22 @@ const theme = createMuiTheme({
         border: `1px solid ${primary.main}`,
         '&:hover': {
           background: 'transparent',
-          border: `1px solid ${primary.darker}`,
+          border: `1px solid ${primary.dark}`,
         },
         '&:disabled': {
-          border: `1px solid ${primary.disabled}`,
+          border: `1px solid ${common.disabled}`,
           cursor: 'not-allowed',
           pointerEvents: 'auto',
           '&:hover': {
-            border: `1px solid ${primary.disabled}`,
+            border: `1px solid ${common.disabled}`,
           },
         },
       },
     },
     MuiTextField: {
       root: {
-        minWidth: '260px',
+        minWidth: '240px',
+        maxWidth: '240px',
         '& label.Mui-focused': {
           color: primary.main,
         },
