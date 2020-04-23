@@ -6,6 +6,7 @@ export const primary = {
 
 export const common = {
   white: '#FFFFFF',
+  black: '#000000',
   disabled: '#DDDDDD',
 };
 
