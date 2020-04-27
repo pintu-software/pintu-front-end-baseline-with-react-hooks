@@ -107,6 +107,11 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiCircularProgress: {
+      colorPrimary: {
+        color: primary.main,
+      },
+    },
   },
   /** You can change the default props of all the Material-UI components. A props key is exposed in the theme for this use case. */
   props: {
