@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // import { FormattedMessage } from 'react-intl';
 
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+// import Button from '@material-ui/core/Button';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
+// import ExpandMore from '@material-ui/icons/ExpandMore';
 // import messages from './messages';
 import Logo from './assets/logo.png';
 
@@ -36,15 +36,15 @@ const StyledHeader = styled.header`
 `;
 
 function Header() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = evt => {
-    setAnchorEl(evt.currentTarget);
-  };
+  // const handleClick = evt => {
+  //   setAnchorEl(evt.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <Wrapper>
@@ -69,7 +69,7 @@ function Header() {
           {/* <p>Dashboard</p>
           <p>Budgets</p> */}
         </div>
-        <div
+        {/* <div
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -106,7 +106,7 @@ function Header() {
               Logout
             </MenuItem>
           </Menu>
-        </div>
+        </div> */}
       </StyledHeader>
     </Wrapper>
   );
