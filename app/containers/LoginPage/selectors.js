@@ -5,7 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the loginPage state domain
  */
 
-const selectLoginPageDomain = state => state.loginPage || initialState;
+const selectLoginPageDomain = state => state.login || initialState;
 
 const makeSelectLoginAction = () =>
   createSelector(
