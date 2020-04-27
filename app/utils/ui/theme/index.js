@@ -100,6 +100,12 @@ const theme = createMuiTheme({
         fontSize: '14px',
         fontWeight: 'bold',
       },
+      root: {
+        '&. error': {
+          fontSize: '14px',
+          color: common.error,
+        },
+      },
     },
   },
   /** You can change the default props of all the Material-UI components. A props key is exposed in the theme for this use case. */
