@@ -8,7 +8,7 @@ import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
 
 export const initialState = {
   api: {
-    loading: null,
+    loading: false,
     error: null,
   },
 };
