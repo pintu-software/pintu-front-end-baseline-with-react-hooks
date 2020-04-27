@@ -21,6 +21,7 @@ function Button({
   component = 'button',
   fullWidth = false,
   disabled = false,
+  type = 'button',
 }) {
   return (
     <Wrapper>
@@ -30,6 +31,7 @@ function Button({
         component={component}
         fullWidth={fullWidth}
         disabled={disabled}
+        type={type}
       >
         {Children.toArray(children)}
       </MUIButton>
@@ -44,6 +46,7 @@ Button.propTypes = {
   component: PropTypes.oneOf(['button', 'submit']),
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
+  type: PropTypes.oneOf(['button', 'submit']),
 };
 
 export default Button;
