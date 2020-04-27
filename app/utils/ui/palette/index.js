@@ -8,6 +8,7 @@ export const common = {
   white: '#FFFFFF',
   black: '#000000',
   disabled: '#DDDDDD',
+  error: '#F44336',
 };
 
 export const textColor = {
@@ -15,7 +16,7 @@ export const textColor = {
   secondary: '#565654',
   tertiary: '#A0A0A0',
   inverse: '#FFFFFF',
-  error: '#D40000',
+  error: '#F44336',
   main: '#312A74',
   disabled: '#DDDDDD',
 };

@@ -59,6 +59,12 @@ const theme = createMuiTheme({
         '& .MuiInput-underline:after': {
           borderBottomColor: primary.main,
         },
+        '& .MuiInput-underline.Mui-error:after': {
+          borderBottomColor: common.error,
+        },
+        '& .MuiFormHelperText-root': {
+          color: common.error,
+        },
       },
     },
     MuiTypography: {
