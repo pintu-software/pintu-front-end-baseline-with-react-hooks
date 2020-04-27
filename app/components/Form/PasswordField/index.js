@@ -20,6 +20,7 @@ function PasswordField({
   error,
   onClickShowPassword,
   showPassword,
+  helperText,
 }) {
   return (
     <TextField
@@ -43,6 +44,7 @@ function PasswordField({
           </InputAdornment>
         ),
       }}
+      helperText={helperText}
     />
   );
 }
@@ -52,9 +54,10 @@ PasswordField.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  error: PropTypes.bool,
   onClickShowPassword: PropTypes.func,
   showPassword: PropTypes.bool,
+  helperText: PropTypes.string,
 };
 
 export default PasswordField;

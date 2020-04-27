@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-function InputField({ label, type, name, onChange, value, error }) {
+function InputField({ label, type, name, onChange, value, error, helperText }) {
   return (
     <TextField
       label={label}
@@ -19,6 +19,7 @@ function InputField({ label, type, name, onChange, value, error }) {
       onChange={onChange}
       value={value}
       error={error}
+      helperText={helperText}
     />
   );
 }
@@ -29,7 +30,8 @@ InputField.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
 };
 
 export default InputField;
