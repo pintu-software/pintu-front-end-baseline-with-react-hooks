@@ -6,13 +6,13 @@ export function* requestLogin({ payload }) {
   try {
     if (payload.email === 'info@pintu.dk' && payload.password === 'Pintu123!') {
       yield put(requestLoginSuccess());
+    } else {
+      const errMessage = {
+        status: 403,
+        message: 'Invalid email/password entered',
+      };
+      yield put(requestLoginFailed(errMessage));
     }
-
-    const errMessage = {
-      status: 403,
-      message: 'Invalid email/password entered',
-    };
-    yield put(requestLoginFailed(errMessage));
   } catch (err) {
     yield put(requestLoginFailed(err));
   }
