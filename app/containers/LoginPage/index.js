@@ -21,12 +21,13 @@ import { textColor } from 'utils/ui/palette';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
 
 import { requestLogin } from './actions';
-import { makeSelectForm } from './selectors';
+import { makeSelectLoginAction } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -54,7 +55,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-export function LoginPage({ onRequestLogin }) {
+export function LoginPage({ onRequestLogin, api }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -72,6 +73,8 @@ export function LoginPage({ onRequestLogin }) {
     },
   });
 
+  const { loading, error } = api;
+
   return (
     <form id="login-form" onSubmit={formik.handleSubmit}>
       <Wrapper>
@@ -83,6 +86,11 @@ export function LoginPage({ onRequestLogin }) {
               <b style={{ color: textColor.main }}>{APP_NAME}</b>
             </Typography>
           </Grid>
+          {error && (
+            <Grid item xs={12}>
+              <Typography color="error">{error.message}</Typography>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <InputField
               label="Email Address"
@@ -121,16 +129,20 @@ export function LoginPage({ onRequestLogin }) {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button
-              type="submit"
-              disabled={
-                formik.isSubmitting ||
-                !formik.isValid ||
-                Object.keys(formik.touched).length < 1
-              }
-            >
-              <FormattedMessage {...messages.login} />
-            </Button>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                type="submit"
+                disabled={
+                  formik.isSubmitting ||
+                  !formik.isValid ||
+                  Object.keys(formik.touched).length < 1
+                }
+              >
+                <FormattedMessage {...messages.login} />
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Wrapper>
@@ -139,15 +151,15 @@ export function LoginPage({ onRequestLogin }) {
 }
 
 LoginPage.propTypes = {
-  form: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string,
+  api: PropTypes.shape({
+    loading: PropTypes.bool,
+    error: PropTypes.object,
   }),
   onRequestLogin: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  form: makeSelectForm(),
+  api: makeSelectLoginAction(),
 });
 
 function mapDispatchToProps(dispatch) {
