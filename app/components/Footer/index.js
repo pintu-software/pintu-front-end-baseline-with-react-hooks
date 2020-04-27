@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
 import Typography from '@material-ui/core/Typography';
 import { common } from 'utils/ui/palette';
-import messages from './messages';
+// import messages from './messages';
 
 const Wrapper = styled.footer`
   display: flex;
@@ -22,12 +22,7 @@ function Footer() {
       </section>
       <section>
         <Typography>
-          <FormattedMessage
-            {...messages.authorMessage}
-            values={{
-              author: <A href="https:pintu.dk">Pintu Software Sdn. Bhd.</A>,
-            }}
-          />
+          Made by <A href="https:pintu.dk">Pintu Software Sdn. Bhd.</A>
         </Typography>
       </section>
     </Wrapper>
