@@ -27,7 +27,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
 
-import { requestLogin } from './actions';
+import { requestLogin, resetErrorMessage } from './actions';
 import { makeSelectLoginAction } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -56,7 +56,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-export function LoginPage({ onRequestLogin, api }) {
+export function LoginPage({ onRequestLogin, api, onResetErrorMessage }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -109,6 +109,7 @@ export function LoginPage({ onRequestLogin, api }) {
               label="Email Address"
               type="email"
               name="email"
+              onFocus={() => onResetErrorMessage()}
               onChange={evt => {
                 formik.setFieldValue(evt.target.name, evt.target.value);
                 formik.setFieldTouched(evt.target.name, true, false);
@@ -126,6 +127,7 @@ export function LoginPage({ onRequestLogin, api }) {
             <PasswordField
               label="Password"
               name="password"
+              onFocus={() => onResetErrorMessage()}
               onChange={evt => {
                 formik.setFieldValue(evt.target.name, evt.target.value);
                 formik.setFieldTouched(evt.target.name, true, false);
@@ -169,6 +171,7 @@ LoginPage.propTypes = {
     error: PropTypes.object,
   }),
   onRequestLogin: PropTypes.func,
+  onResetErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -178,6 +181,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onRequestLogin: payload => dispatch(requestLogin(payload)),
+    onResetErrorMessage: () => dispatch(resetErrorMessage()),
   };
 }
 

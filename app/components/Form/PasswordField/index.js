@@ -21,6 +21,7 @@ function PasswordField({
   onClickShowPassword,
   showPassword,
   helperText,
+  onFocus,
 }) {
   return (
     <TextField
@@ -45,6 +46,7 @@ function PasswordField({
         ),
       }}
       helperText={helperText}
+      onFocus={onFocus}
     />
   );
 }
@@ -58,6 +60,7 @@ PasswordField.propTypes = {
   onClickShowPassword: PropTypes.func,
   showPassword: PropTypes.bool,
   helperText: PropTypes.string,
+  onFocus: PropTypes.func,
 };
 
 export default PasswordField;

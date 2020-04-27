@@ -4,7 +4,12 @@
  *
  */
 
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
+import {
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  RESET_ERROR_MESSAGE,
+} from './constants';
 
 export function requestLogin(payload) {
   return {
@@ -24,5 +29,11 @@ export function requestLoginFailed(payload) {
   return {
     type: LOGIN_FAILED,
     payload,
+  };
+}
+
+export function resetErrorMessage() {
+  return {
+    type: RESET_ERROR_MESSAGE,
   };
 }

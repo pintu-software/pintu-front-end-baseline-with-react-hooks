@@ -4,7 +4,12 @@
  *
  */
 import produce from 'immer';
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
+import {
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  RESET_ERROR_MESSAGE,
+} from './constants';
 
 export const initialState = {
   api: {
@@ -27,6 +32,10 @@ const loginPageReducer = (state = initialState, action) =>
       case LOGIN_FAILED:
         draft.api.loading = false;
         draft.api.error = action.payload;
+        break;
+      case RESET_ERROR_MESSAGE:
+        draft.api.loading = false;
+        draft.api.error = null;
         break;
     }
   });
