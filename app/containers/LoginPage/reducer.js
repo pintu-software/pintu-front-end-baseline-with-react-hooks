@@ -4,12 +4,12 @@
  *
  */
 import produce from 'immer';
-import { CHANGE_EMAIL } from './constants';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
 
 export const initialState = {
-  form: {
-    email: '',
-    password: '',
+  api: {
+    loading: null,
+    error: null,
   },
 };
 
@@ -17,8 +17,16 @@ export const initialState = {
 const loginPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case CHANGE_EMAIL:
-        draft.form.email = action.email;
+      case LOGIN:
+        draft.api.loading = true;
+        break;
+      case LOGIN_SUCCESS:
+        draft.api.loading = false;
+        draft.api.error = null;
+        break;
+      case LOGIN_FAILED:
+        draft.api.loading = false;
+        draft.api.error = action.payload;
         break;
     }
   });

@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -23,7 +25,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
 
-import { changeEmail } from './actions';
+import { requestLogin } from './actions';
 import { makeSelectForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -45,64 +47,94 @@ const Wrapper = styled.div`
 
 const key = 'login';
 
-export function LoginPage() {
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required()
+    .email(),
+  password: Yup.string().required(),
+});
+
+export function LoginPage({ onRequestLogin }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const [values, setValues] = React.useState({
-    email: '',
-    password: '',
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: (values, actions) => {
+      onRequestLogin(values);
+      actions.setSubmitting(false);
+    },
   });
 
-  const handleChange = evt => {
-    setValues({
-      ...values,
-      [evt.target.name]: evt.target.value,
-    });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
   return (
-    <Wrapper>
-      <Grid container direction="column" alignItems="center" spacing={4}>
-        <Grid item xs={12}>
-          <Typography variant="h2">
-            <FormattedMessage {...messages.loginTo} />
-            &nbsp;
-            <b style={{ color: textColor.main }}>{APP_NAME}</b>
-          </Typography>
+    <form id="login-form" onSubmit={formik.handleSubmit}>
+      <Wrapper>
+        <Grid container direction="column" alignItems="center" spacing={4}>
+          <Grid item xs={12}>
+            <Typography variant="h2">
+              <FormattedMessage {...messages.loginTo} />
+              &nbsp;
+              <b style={{ color: textColor.main }}>{APP_NAME}</b>
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <InputField
+              label="Email Address"
+              type="email"
+              name="email"
+              onChange={evt => {
+                formik.setFieldValue(evt.target.name, evt.target.value);
+                formik.setFieldTouched(evt.target.name, true, false);
+              }}
+              value={formik.values.email}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={
+                formik.touched.email && Boolean(formik.errors.email)
+                  ? 'Invalid email address'
+                  : null
+              }
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <PasswordField
+              label="Password"
+              name="password"
+              onChange={evt => {
+                formik.setFieldValue(evt.target.name, evt.target.value);
+                formik.setFieldTouched(evt.target.name, true, false);
+              }}
+              value={formik.values.password}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              onClickShowPassword={() => setShowPassword(!showPassword)}
+              showPassword={showPassword}
+              helperText={
+                formik.touched.password && Boolean(formik.errors.password)
+                  ? 'Required'
+                  : null
+              }
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              disabled={
+                formik.isSubmitting ||
+                !formik.isValid ||
+                Object.keys(formik.touched).length < 1
+              }
+            >
+              <FormattedMessage {...messages.login} />
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <InputField
-            label="Email Address"
-            type="email"
-            name="email"
-            onChange={handleChange}
-            value={values.email}
-            // error={error}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <PasswordField
-            label="Password"
-            name="password"
-            onChange={handleChange}
-            value={values.password}
-            // error={error}
-            onClickShowPassword={handleClickShowPassword}
-            showPassword={values.showPassword}
-          />
-        </Grid>
-        <Grid item>
-          <Button>
-            <FormattedMessage {...messages.login} />
-          </Button>
-        </Grid>
-      </Grid>
-    </Wrapper>
+      </Wrapper>
+    </form>
   );
 }
 
@@ -111,7 +143,7 @@ LoginPage.propTypes = {
     email: PropTypes.string,
     password: PropTypes.string,
   }),
-  // onChangeEmail: PropTypes.func,
+  onRequestLogin: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -120,7 +152,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeEmail: evt => dispatch(changeEmail(evt.target.value)),
+    onRequestLogin: payload => dispatch(requestLogin(payload)),
   };
 }
 

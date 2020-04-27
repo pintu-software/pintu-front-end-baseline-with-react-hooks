@@ -4,11 +4,25 @@
  *
  */
 
-import { CHANGE_EMAIL } from './constants';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
 
-export function changeEmail(email) {
+export function requestLogin(payload) {
   return {
-    type: CHANGE_EMAIL,
-    email,
+    type: LOGIN,
+    payload,
+  };
+}
+
+export function requestLoginSuccess(payload) {
+  return {
+    type: LOGIN_SUCCESS,
+    payload,
+  };
+}
+
+export function requestLoginFailed(payload) {
+  return {
+    type: LOGIN_FAILED,
+    payload,
   };
 }

@@ -4,5 +4,6 @@
  *
  */
 export const PREFIX = 'app/LoginPage';
-export const CHANGE_EMAIL = `${PREFIX}/CHANGE_EMAIL`;
-export const CHANGE_PASSWORD = `${PREFIX}/CHANGE_PASSWORD`;
+export const LOGIN = `${PREFIX}/LOGIN`;
+export const LOGIN_SUCCESS = `${PREFIX}/LOGIN_SUCCESS`;
+export const LOGIN_FAILED = `${PREFIX}/LOGIN_FAILED`;

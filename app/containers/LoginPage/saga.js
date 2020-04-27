@@ -1,6 +1,23 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
+import { requestLoginSuccess, requestLoginFailed } from './actions';
+import { LOGIN } from './constants';
 
-// Individual exports for testing
+export function* requestLogin({ payload }) {
+  try {
+    if (payload.email === 'info@pintu.dk' && payload.password === 'Pintu123!') {
+      yield put(requestLoginSuccess());
+    }
+    yield put(
+      requestLoginFailed({
+        status: 403,
+        message: 'Invalid email/password entered',
+      }),
+    );
+  } catch (err) {
+    yield put(requestLoginFailed(err));
+  }
+}
+
 export default function* loginPageSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(LOGIN, requestLogin);
 }
