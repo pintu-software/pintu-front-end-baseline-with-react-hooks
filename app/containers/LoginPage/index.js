@@ -8,6 +8,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -74,6 +75,18 @@ export function LoginPage({ onRequestLogin, api }) {
   });
 
   const { loading, error } = api;
+
+  const history = useHistory();
+  const prevApi = React.useRef(api);
+  React.useEffect(() => {
+    if (
+      prevApi.current.loading === true &&
+      api.loading === false &&
+      api.error === null
+    ) {
+      history.push('/');
+    }
+  }, [api]);
 
   return (
     <form id="login-form" onSubmit={formik.handleSubmit}>
