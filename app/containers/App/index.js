@@ -18,6 +18,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginPage from 'containers/LoginPage/Loadable';
+import ProfilePage from 'containers/Profile/Loadable';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -49,6 +50,7 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/profile" component={ProfilePage} />
             <Route path="/features" component={FeaturePage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
