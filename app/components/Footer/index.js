@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 // import { FormattedMessage } from 'react-intl';
-import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
 import Typography from '@material-ui/core/Typography';
 import { common } from 'utils/ui/palette';
@@ -22,7 +21,7 @@ function Footer() {
       </section>
       <section>
         <Typography>
-          Made by <A href="https:pintu.dk">Pintu Software Sdn. Bhd.</A>
+          Made by <a href="https:pintu.dk">Pintu Software Sdn. Bhd.</a>
         </Typography>
       </section>
     </Wrapper>
