@@ -25,6 +25,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
+import { ShowHelperText } from 'components/Form/helpers';
 
 import { requestLogin, resetErrorMessage } from './actions';
 import { makeSelectLoginPage } from './selectors';
@@ -50,9 +51,9 @@ const key = 'login';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
-    .required()
-    .email(),
-  password: Yup.string().required(),
+    .required('Required')
+    .email('Invalid email'),
+  password: Yup.string().required('Required'),
 });
 
 export function Login({ onRequestLogin, login, onResetErrorMessage }) {
@@ -105,11 +106,10 @@ export function Login({ onRequestLogin, login, onResetErrorMessage }) {
               }}
               value={formik.values.email}
               error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={
-                formik.touched.email && Boolean(formik.errors.email)
-                  ? 'Invalid email address'
-                  : null
-              }
+              helperText={ShowHelperText({
+                formik,
+                fieldName: 'email',
+              })}
             />
           </Grid>
           <Grid item xs={12}>
@@ -125,11 +125,10 @@ export function Login({ onRequestLogin, login, onResetErrorMessage }) {
               error={formik.touched.password && Boolean(formik.errors.password)}
               onClickShowPassword={() => setShowPassword(!showPassword)}
               showPassword={showPassword}
-              helperText={
-                formik.touched.password && Boolean(formik.errors.password)
-                  ? 'Required'
-                  : null
-              }
+              helperText={ShowHelperText({
+                formik,
+                fieldName: 'password',
+              })}
             />
           </Grid>
           <Grid item xs={12}>
