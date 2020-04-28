@@ -1,5 +1,5 @@
 /*
- * LoginPage Reducer
+ * Login Reducer
  *
  * The reducer takes care of our data. Using actions, we can
  * update our application state. To add a new action,
@@ -24,7 +24,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const loginPageReducer = (state = initialState, action) =>
+const loginReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case LOGIN:
@@ -50,4 +50,4 @@ const loginPageReducer = (state = initialState, action) =>
     }
   });
 
-export default loginPageReducer;
+export default loginReducer;

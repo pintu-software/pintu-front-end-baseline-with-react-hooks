@@ -17,7 +17,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 // import AuthRoute from 'components/AuthRoute';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import LoginPage from 'containers/LoginPage/Loadable';
+import LoginPage from 'containers/Login/Loadable';
 import ProfilePage from 'containers/Profile/Loadable';
 import RegisterPage from 'containers/Register/Loadable';
 import GlobalStyle from '../../global-styles';

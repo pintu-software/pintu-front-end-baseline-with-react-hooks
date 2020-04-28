@@ -1,6 +1,6 @@
 /**
  *
- * LoginPage
+ * Login
  *
  */
 
@@ -55,7 +55,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-export function LoginPage({ onRequestLogin, login, onResetErrorMessage }) {
+export function Login({ onRequestLogin, login, onResetErrorMessage }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -154,7 +154,7 @@ export function LoginPage({ onRequestLogin, login, onResetErrorMessage }) {
   );
 }
 
-LoginPage.propTypes = {
+Login.propTypes = {
   login: PropTypes.object,
   onRequestLogin: PropTypes.func,
   onResetErrorMessage: PropTypes.func,
@@ -179,4 +179,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(LoginPage);
+)(Login);

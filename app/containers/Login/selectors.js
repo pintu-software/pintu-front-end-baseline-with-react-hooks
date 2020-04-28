@@ -2,21 +2,21 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the loginPage state domain
+ * Direct selector to the login state domain
  */
 
-const selectLoginPageDomain = state => state.login || initialState;
+const selectLoginDomain = state => state.login || initialState;
 
 const makeSelectLoginPage = () =>
   createSelector(
-    selectLoginPageDomain,
+    selectLoginDomain,
     substate => substate,
   );
 
 const makeSelectIsAuthUser = () =>
   createSelector(
-    selectLoginPageDomain,
+    selectLoginDomain,
     substate => substate.isAuthUser,
   );
 
-export { selectLoginPageDomain, makeSelectLoginPage, makeSelectIsAuthUser };
+export { selectLoginDomain, makeSelectLoginPage, makeSelectIsAuthUser };

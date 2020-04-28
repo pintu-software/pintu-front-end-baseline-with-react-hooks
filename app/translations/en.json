@@ -6,6 +6,6 @@
   "boilerplate.containers.LocaleToggle.de": "de",
   "boilerplate.containers.LocaleToggle.en": "en",
   "boilerplate.containers.NotFoundPage.header": "Page not found.",
-  "app.containers.LoginPage.loginTo": "Login to",
-  "app.containers.LoginPage.login": "Login"
+  "app.containers.Login.loginTo": "Login to",
+  "app.containers.Login.login": "Login"
 }
