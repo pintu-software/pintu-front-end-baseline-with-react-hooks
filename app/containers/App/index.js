@@ -13,7 +13,6 @@ import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from 'utils/ui/theme';
 import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 // import AuthRoute from 'components/AuthRoute';
 import Header from 'components/Header';
@@ -59,7 +58,6 @@ export default function App() {
               component={ProfilePage}
               type="private"
             />
-            <Route path="/features" component={FeaturePage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
         </AppWrapper>
