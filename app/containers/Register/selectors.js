@@ -7,19 +7,17 @@ import { initialState } from './reducer';
 
 const selectRegisterDomain = state => state.register || initialState;
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by Register
- */
-
 const makeSelectRegister = () =>
   createSelector(
     selectRegisterDomain,
     substate => substate,
   );
 
+const makeSelectRegisterApiStatus = () =>
+  createSelector(
+    selectRegisterDomain,
+    substate => substate.api,
+  );
+
 export default makeSelectRegister;
-export { selectRegisterDomain };
+export { selectRegisterDomain, makeSelectRegisterApiStatus };
