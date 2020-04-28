@@ -9,6 +9,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   RESET_ERROR_MESSAGE,
+  LOGOUT,
 } from './constants';
 
 export const initialState = {
@@ -39,6 +40,9 @@ const loginPageReducer = (state = initialState, action) =>
       case RESET_ERROR_MESSAGE:
         draft.api.loading = false;
         draft.api.error = null;
+        break;
+      case LOGOUT:
+        draft.isAuthUser = false;
         break;
     }
   });

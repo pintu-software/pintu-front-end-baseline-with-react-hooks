@@ -9,6 +9,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   RESET_ERROR_MESSAGE,
+  LOGOUT,
 } from './constants';
 
 export function requestLogin(payload) {
@@ -35,5 +36,12 @@ export function requestLoginFailed(payload) {
 export function resetErrorMessage() {
   return {
     type: RESET_ERROR_MESSAGE,
+  };
+}
+
+export function requestLogout(payload) {
+  return {
+    type: LOGOUT,
+    payload,
   };
 }

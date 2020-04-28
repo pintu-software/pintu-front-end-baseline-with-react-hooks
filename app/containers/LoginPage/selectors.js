@@ -13,4 +13,10 @@ const makeSelectLoginPage = () =>
     substate => substate,
   );
 
-export { selectLoginPageDomain, makeSelectLoginPage };
+const makeSelectIsAuthUser = () =>
+  createSelector(
+    selectLoginPageDomain,
+    substate => substate.isAuthUser,
+  );
+
+export { selectLoginPageDomain, makeSelectLoginPage, makeSelectIsAuthUser };
