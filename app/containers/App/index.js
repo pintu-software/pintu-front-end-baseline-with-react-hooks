@@ -15,7 +15,7 @@ import theme from 'utils/ui/theme';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import AuthRoute from 'components/AuthRoute';
+// import AuthRoute from 'components/AuthRoute';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -50,8 +50,8 @@ export default function App() {
         <AppWrapper>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <AuthRoute exact path="/login" component={LoginPage} type="guest" />
-            <AuthRoute
+            <Route exact path="/login" component={LoginPage} type="guest" />
+            <Route
               exact
               path="/profile"
               component={ProfilePage}
