@@ -16,6 +16,7 @@ export const initialState = {
     loading: false,
     error: null,
   },
+  isAuthUser: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -28,10 +29,12 @@ const loginPageReducer = (state = initialState, action) =>
       case LOGIN_SUCCESS:
         draft.api.loading = false;
         draft.api.error = null;
+        draft.isAuthUser = true;
         break;
       case LOGIN_FAILED:
         draft.api.loading = false;
         draft.api.error = action.payload;
+        draft.isAuthUser = false;
         break;
       case RESET_ERROR_MESSAGE:
         draft.api.loading = false;

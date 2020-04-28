@@ -7,10 +7,10 @@ import { initialState } from './reducer';
 
 const selectLoginPageDomain = state => state.login || initialState;
 
-const makeSelectLoginAction = () =>
+const makeSelectLoginPage = () =>
   createSelector(
     selectLoginPageDomain,
-    substate => substate.api,
+    substate => substate,
   );
 
-export { selectLoginPageDomain, makeSelectLoginAction };
+export { selectLoginPageDomain, makeSelectLoginPage };

@@ -8,7 +8,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -28,7 +27,7 @@ import Button from 'components/Button';
 import { InputField, PasswordField } from 'components/Form';
 
 import { requestLogin, resetErrorMessage } from './actions';
-import { makeSelectLoginAction } from './selectors';
+import { makeSelectLoginPage } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -56,7 +55,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-export function LoginPage({ onRequestLogin, api, onResetErrorMessage }) {
+export function LoginPage({ onRequestLogin, login, onResetErrorMessage }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -74,19 +73,9 @@ export function LoginPage({ onRequestLogin, api, onResetErrorMessage }) {
     },
   });
 
-  const { loading, error } = api;
-
-  const history = useHistory();
-  const prevApi = React.useRef(api);
-  React.useEffect(() => {
-    if (
-      prevApi.current.loading === true &&
-      api.loading === false &&
-      api.error === null
-    ) {
-      history.push('/');
-    }
-  }, [api]);
+  const {
+    api: { loading, error },
+  } = login;
 
   return (
     <form id="login-form" onSubmit={formik.handleSubmit}>
@@ -166,16 +155,13 @@ export function LoginPage({ onRequestLogin, api, onResetErrorMessage }) {
 }
 
 LoginPage.propTypes = {
-  api: PropTypes.shape({
-    loading: PropTypes.bool,
-    error: PropTypes.object,
-  }),
+  login: PropTypes.object,
   onRequestLogin: PropTypes.func,
   onResetErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  api: makeSelectLoginAction(),
+  login: makeSelectLoginPage(),
 });
 
 function mapDispatchToProps(dispatch) {
