@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 // import { FormattedMessage } from 'react-intl';
 import { requestLogout } from 'containers/LoginPage/actions';
 import { makeSelectIsAuthUser } from 'containers/LoginPage/selectors';
+import Img from 'components/Img';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -113,7 +114,7 @@ function Header({ isAuthUser, onRequestLogout }) {
       <StyledHeader>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link to="/">
-            <img
+            <Img
               src={Logo}
               alt="Pintu - Doorway to solution"
               width="36"
