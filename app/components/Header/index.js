@@ -96,7 +96,16 @@ function Header({ isAuthUser, onRequestLogout }) {
   );
 
   const guestSection = isInLoginPage ? null : (
-    <Button onClick={() => history.push('/login')}>Login</Button>
+    <>
+      <Button
+        color="secondary"
+        onClick={() => history.push('/register')}
+        style={{ marginRight: '8px' }}
+      >
+        Register
+      </Button>
+      <Button onClick={() => history.push('/login')}>Login</Button>
+    </>
   );
 
   return (
