@@ -4,7 +4,8 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -28,7 +29,7 @@ import { InputField, PasswordField } from 'components/Form';
 import { ShowHelperText } from 'components/Form/helpers';
 
 import { requestLogin, resetErrorMessage } from './actions';
-import { makeSelectLoginPage } from './selectors';
+import { makeSelectLoginPage, makeSelectIsAuthUser } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -56,9 +57,22 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Required'),
 });
 
-export function Login({ onRequestLogin, login, onResetErrorMessage }) {
+export function Login({
+  onRequestLogin,
+  login,
+  onResetErrorMessage,
+  isAuthUser,
+}) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthUser) {
+      history.push('/');
+    }
+  }, [isAuthUser]);
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -157,10 +171,12 @@ Login.propTypes = {
   login: PropTypes.object,
   onRequestLogin: PropTypes.func,
   onResetErrorMessage: PropTypes.func,
+  isAuthUser: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   login: makeSelectLoginPage(),
+  isAuthUser: makeSelectIsAuthUser(),
 });
 
 function mapDispatchToProps(dispatch) {
