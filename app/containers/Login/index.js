@@ -83,8 +83,8 @@ export function Login({
     },
     validationSchema,
     onSubmit: (values, actions) => {
-      onRequestLogin(values);
       actions.setSubmitting(false);
+      onRequestLogin(values);
     },
   });
 
