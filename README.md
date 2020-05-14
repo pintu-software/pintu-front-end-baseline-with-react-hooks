@@ -1,1 +1,1 @@
-This repo is just for react hooks study purpose.
+Front end baseline with React Hooks
