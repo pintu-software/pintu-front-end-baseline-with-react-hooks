@@ -7,22 +7,25 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
-const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
-const deLocaleData = require('react-intl/locale-data/de');
+const DEFAULT_LOCALE = 'en';
+
+// Using new polyfill, guide: https://formatjs.io/docs/react-intl/upgrade-guide-3x/#migrate-to-using-native-intl-apis
+if (!window.Intl || window.Intl.PluralRules) {
+  require('@formatjs/intl-pluralrules/polyfill');
+  require('@formatjs/intl-pluralrules/locale-data/en');
+}
+
+if (!window.Intl || window.Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  require('@formatjs/intl-relativetimeformat/locale-data/en'); 
+}
 
 const enTranslationMessages = require('./translations/en.json');
-const deTranslationMessages = require('./translations/de.json');
-
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
-
-const DEFAULT_LOCALE = 'en';
+// const deTranslationMessages = require('./translations/de.json');
 
 // prettier-ignore
 const appLocales = [
   'en',
-  'de',
 ];
 
 const formatTranslationMessages = (locale, messages) => {
@@ -42,7 +45,6 @@ const formatTranslationMessages = (locale, messages) => {
 
 const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
-  de: formatTranslationMessages('de', deTranslationMessages),
 };
 
 exports.appLocales = appLocales;
