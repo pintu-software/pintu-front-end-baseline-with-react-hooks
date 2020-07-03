@@ -17,7 +17,7 @@ if (!window.Intl || window.Intl.PluralRules) {
 
 if (!window.Intl || window.Intl.RelativeTimeFormat) {
   require('@formatjs/intl-relativetimeformat/polyfill');
-  require('@formatjs/intl-relativetimeformat/locale-data/en'); 
+  require('@formatjs/intl-relativetimeformat/locale-data/en');
 }
 
 const enTranslationMessages = require('./translations/en.json');
