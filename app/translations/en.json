@@ -1,11 +1,1 @@
-{
-  "boilerplate.components.Footer.author.message": "Made with love by {author}.",
-  "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
-  "boilerplate.containers.HomePage.start_project.header": "Start your next react project in seconds",
-  "boilerplate.containers.HomePage.start_project.message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-  "boilerplate.containers.LocaleToggle.de": "de",
-  "boilerplate.containers.LocaleToggle.en": "en",
-  "boilerplate.containers.NotFoundPage.header": "Page not found.",
-  "app.containers.Login.loginTo": "Login to",
-  "app.containers.Login.login": "Login"
-}
+[]

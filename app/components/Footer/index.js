@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import { FormattedMessage } from 'react-intl';
 import LocaleToggle from 'containers/LocaleToggle';
 import Typography from '@material-ui/core/Typography';
-import { common } from 'utils/ui/palette';
+import { common } from 'utils/app/ui/palette';
 // import messages from './messages';
 
 const Wrapper = styled.footer`

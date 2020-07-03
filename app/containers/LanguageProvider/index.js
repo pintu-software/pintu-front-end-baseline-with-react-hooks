@@ -16,11 +16,7 @@ import { makeSelectLocale } from './selectors';
 
 export function LanguageProvider(props) {
   return (
-    <IntlProvider
-      locale={props.locale}
-      key={props.locale}
-      messages={props.messages[props.locale]}
-    >
+    <IntlProvider locale={props.locale} key={props.locale} messages={props.messages[props.locale]}>
       {React.Children.only(props.children)}
     </IntlProvider>
   );
@@ -39,4 +35,13 @@ const mapStateToProps = createSelector(
   }),
 );
 
-export default connect(mapStateToProps)(LanguageProvider);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LanguageProvider);

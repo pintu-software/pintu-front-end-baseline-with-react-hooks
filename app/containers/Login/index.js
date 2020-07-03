@@ -17,8 +17,7 @@ import { useFormik } from 'formik';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { APP_NAME } from 'utils/constants';
-import { textColor } from 'utils/ui/palette';
+import { textColor } from 'utils/app/ui/palette';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -57,12 +56,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Required'),
 });
 
-export function Login({
-  onRequestLogin,
-  login,
-  onResetErrorMessage,
-  isAuthUser,
-}) {
+export function Login({ onRequestLogin, login, onResetErrorMessage, isAuthUser }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -100,7 +94,7 @@ export function Login({
             <Typography variant="h2">
               <FormattedMessage {...messages.loginTo} />
               &nbsp;
-              <b style={{ color: textColor.main }}>{APP_NAME}</b>
+              <b style={{ color: textColor.main }}>Pintu Software Baseline</b>
             </Typography>
           </Grid>
           {error && (
@@ -152,9 +146,7 @@ export function Login({
               <Button
                 type="submit"
                 disabled={
-                  formik.isSubmitting ||
-                  !formik.isValid ||
-                  Object.keys(formik.touched).length < 1
+                  formik.isSubmitting || !formik.isValid || Object.keys(formik.touched).length < 1
                 }
               >
                 <FormattedMessage {...messages.login} />

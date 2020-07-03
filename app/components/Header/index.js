@@ -1,20 +1,31 @@
-import React from 'react';
+/**
+ *
+ * Header
+ *
+ */
+
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-// import { FormattedMessage } from 'react-intl';
-import { requestLogout } from 'containers/Login/actions';
-import { makeSelectIsAuthUser } from 'containers/Login/selectors';
-import Img from 'components/Img';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-// import messages from './messages';
+
+import { requestLogout } from 'containers/Login/actions';
+import { makeSelectIsAuthUser } from 'containers/Login/selectors';
+
+import { FormattedMessage } from 'react-intl';
+
+import Img from 'components/Img';
+
 import Logo from './assets/logo.png';
+import messages from './messages';
 
 const Wrapper = styled.div`
   display: block;
@@ -40,8 +51,12 @@ const StyledHeader = styled.header`
   }
 `;
 
-function Header({ isAuthUser, onRequestLogout }) {
+function Header(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const history = useHistory();
+  const location = useLocation();
+
+  const { isAuthUser, onRequestLogout } = props;
 
   const handleClick = evt => {
     setAnchorEl(evt.currentTarget);
@@ -56,8 +71,6 @@ function Header({ isAuthUser, onRequestLogout }) {
     onRequestLogout();
   };
 
-  const history = useHistory();
-  const location = useLocation();
   const isInLoginPage = location.pathname === '/login';
 
   const authUserSection = (
@@ -90,7 +103,7 @@ function Header({ isAuthUser, onRequestLogout }) {
         }}
       >
         <MenuItem style={{ width: '222px' }} onClick={handleLogout}>
-          Logout
+          <FormattedMessage {...messages.Logout} />
         </MenuItem>
       </Menu>
     </>
@@ -114,12 +127,7 @@ function Header({ isAuthUser, onRequestLogout }) {
       <StyledHeader>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link to="/">
-            <Img
-              src={Logo}
-              alt="Pintu - Doorway to solution"
-              width="36"
-              height="36"
-            />
+            <Img src={Logo} alt="Pintu - Doorway to solution" width="36" height="36" />
           </Link>
         </div>
         <div
@@ -128,10 +136,7 @@ function Header({ isAuthUser, onRequestLogout }) {
             flex: 1,
             alignItems: 'center',
           }}
-        >
-          {/* <p>Dashboard</p>
-          <p>Budgets</p> */}
-        </div>
+        />
         <div
           style={{
             display: 'flex',
@@ -163,4 +168,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Header);
+)(memo(Header));

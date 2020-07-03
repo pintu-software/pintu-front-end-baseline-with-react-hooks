@@ -1,25 +1,28 @@
 /**
  *
- * App
+ * App.js
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
+ *
  */
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from 'utils/ui/theme';
+import theme from 'utils/app/ui/theme';
+
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-// import AuthRoute from 'components/AuthRoute';
-import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginPage from 'containers/Login/Loadable';
 import ProfilePage from 'containers/Profile/Loadable';
 import RegisterPage from 'containers/Register/Loadable';
+
+import Header from 'components/Header';
+
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -39,12 +42,6 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
       <ThemeProvider theme={theme}>
         <Header />
         <AppWrapper>
@@ -52,12 +49,7 @@ export default function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} type="guest" />
             <Route path="/register" component={RegisterPage} type="guest" />
-            <Route
-              exact
-              path="/profile"
-              component={ProfilePage}
-              type="private"
-            />
+            <Route exact path="/profile" component={ProfilePage} type="private" />
             <Route path="" component={NotFoundPage} />
           </Switch>
         </AppWrapper>
