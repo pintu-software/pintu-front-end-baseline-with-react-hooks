@@ -11,6 +11,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Tooltip from '@material-ui/core/Tooltip';
+import InfoIcon from '@material-ui/icons/Info';
 
 function PasswordField({
   label,
@@ -22,10 +24,20 @@ function PasswordField({
   showPassword,
   helperText,
   onFocus,
+  informativeText,
 }) {
   return (
     <TextField
-      label={label}
+      label={
+        <div>
+          {label}&nbsp;
+          {informativeText && informativeText !== '' && (
+            <Tooltip title={informativeText} arrow>
+              <InfoIcon />
+            </Tooltip>
+          )}
+        </div>
+      }
       placeholder={`Enter ${label}`}
       type={showPassword ? 'text' : 'password'}
       name={name}
@@ -36,10 +48,7 @@ function PasswordField({
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={onClickShowPassword}
-            >
+            <IconButton aria-label="toggle password visibility" onClick={onClickShowPassword}>
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
@@ -47,6 +56,7 @@ function PasswordField({
       }}
       helperText={helperText}
       onFocus={onFocus}
+      InputLabelProps={{ style: { pointerEvents: 'auto' } }}
     />
   );
 }
@@ -61,6 +71,7 @@ PasswordField.propTypes = {
   showPassword: PropTypes.bool,
   helperText: PropTypes.string,
   onFocus: PropTypes.func,
+  informativeText: PropTypes.string,
 };
 
 export default PasswordField;

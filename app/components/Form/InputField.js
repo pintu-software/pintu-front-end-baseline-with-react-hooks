@@ -7,6 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
+import InfoIcon from '@material-ui/icons/Info';
 
 function InputField({
   label,
@@ -17,10 +19,20 @@ function InputField({
   error,
   helperText,
   onFocus,
+  informativeText,
 }) {
   return (
     <TextField
-      label={label}
+      label={
+        <div>
+          {label}&nbsp;
+          {informativeText && informativeText !== '' && (
+            <Tooltip title={informativeText} arrow>
+              <InfoIcon />
+            </Tooltip>
+          )}
+        </div>
+      }
       placeholder={`Enter ${label}`}
       type={type}
       name={name}
@@ -30,6 +42,7 @@ function InputField({
       error={error}
       helperText={helperText}
       onFocus={onFocus}
+      InputLabelProps={{ style: { pointerEvents: 'auto' } }}
     />
   );
 }
@@ -43,6 +56,7 @@ InputField.propTypes = {
   error: PropTypes.bool,
   helperText: PropTypes.string,
   onFocus: PropTypes.func,
+  informativeText: PropTypes.string,
 };
 
 export default InputField;
