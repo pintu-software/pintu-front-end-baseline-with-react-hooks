@@ -64,27 +64,12 @@ const validationSchema = Yup.object().shape({
     .required('Required')
     .email('Invalid email'),
   password: Yup.string()
-    .min(
-      MIN_CHARACTERS,
-      `Password should be at least ${MIN_CHARACTERS} characters`,
-    )
-    .max(
-      MAX_CHARACTERS,
-      `Password should not be more than ${MAX_CHARACTERS} characters`,
-    )
-    .matches(
-      SPECIAL_CHARACTER,
-      'Password should contain at least one special character',
-    )
+    .min(MIN_CHARACTERS, `Password should be at least ${MIN_CHARACTERS} characters`)
+    .max(MAX_CHARACTERS, `Password should not be more than ${MAX_CHARACTERS} characters`)
+    .matches(SPECIAL_CHARACTER, 'Password should contain at least one special character')
     .matches(ONE_NUMBER, 'Password should contain at least one number')
-    .matches(
-      UPPERCASE_CHARACTER,
-      'Password should contain at least one uppercase letter',
-    )
-    .matches(
-      LOWERCASE_CHARACTER,
-      'Password should contain at least one lowercase letter',
-    )
+    .matches(UPPERCASE_CHARACTER, 'Password should contain at least one uppercase letter')
+    .matches(LOWERCASE_CHARACTER, 'Password should contain at least one lowercase letter')
     .required('Required'),
   repeatPassword: Yup.string().oneOf(
     [Yup.ref('password')],
@@ -184,6 +169,7 @@ export function Register({ onCreateUser, api, onResetErrorMessage }) {
                 formik,
                 fieldName: 'password',
               })}
+              informativeText="Make sure it's at least 8 characters including a number, lowercase letter, uppercase letter and special character."
             />
           </Grid>
           <Grid item xs={12}>
@@ -196,9 +182,7 @@ export function Register({ onCreateUser, api, onResetErrorMessage }) {
                 formik.setFieldTouched(evt.target.name, true, false);
               }}
               value={formik.values.repeatPassword}
-              error={
-                formik.touched.password && Boolean(formik.errors.repeatPassword)
-              }
+              error={formik.touched.password && Boolean(formik.errors.repeatPassword)}
               onClickShowPassword={() => setShowPassword(!showPassword)}
               showPassword={showPassword}
               helperText={ShowHelperText({
@@ -214,9 +198,7 @@ export function Register({ onCreateUser, api, onResetErrorMessage }) {
               <Button
                 type="submit"
                 disabled={
-                  formik.isSubmitting ||
-                  !formik.isValid ||
-                  Object.keys(formik.touched).length < 1
+                  formik.isSubmitting || !formik.isValid || Object.keys(formik.touched).length < 1
                 }
               >
                 Register
