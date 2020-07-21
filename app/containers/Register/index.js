@@ -22,7 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Button from 'components/Button';
-import { InputField, PasswordField } from 'components/Form';
+import { InputField, PasswordField, SelectField } from 'components/Form';
 import { ShowHelperText } from 'components/Form/helpers';
 
 import { createUser, resetErrorMessage } from './actions';
@@ -81,7 +81,15 @@ const validationSchema = Yup.object().shape({
       message: 'Invalid name',
     })
     .max(MAX_NAME_LENGTH, `Max ${MAX_NAME_LENGTH} characters`),
+  title: Yup.string().required('Required'),
 });
+
+const TITLE_OPTIONS = [
+  { label: 'Ms', value: 'Ms' },
+  { label: 'Mr', value: 'Mr' },
+  { label: 'Mrs', value: 'Mrs' },
+  { label: 'Miss', value: 'Miss' },
+];
 
 export function Register({ onCreateUser, api, onResetErrorMessage }) {
   useInjectReducer({ key, reducer });
@@ -95,6 +103,7 @@ export function Register({ onCreateUser, api, onResetErrorMessage }) {
       password: '',
       repeatPassword: '',
       fullName: '',
+      title: '',
     },
     validationSchema,
     onSubmit: (values, actions) => {
@@ -131,6 +140,24 @@ export function Register({ onCreateUser, api, onResetErrorMessage }) {
               helperText={ShowHelperText({
                 formik,
                 fieldName: 'fullName',
+              })}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SelectField
+              label="Title"
+              name="title"
+              onFocus={() => onResetErrorMessage()}
+              onChange={evt => {
+                formik.setFieldValue('title', evt.target.value);
+                formik.setFieldTouched('title', true, false);
+              }}
+              value={formik.values.title}
+              options={TITLE_OPTIONS}
+              error={formik.touched.title && Boolean(formik.errors.title)}
+              helperText={ShowHelperText({
+                formik,
+                fieldName: 'title',
               })}
             />
           </Grid>

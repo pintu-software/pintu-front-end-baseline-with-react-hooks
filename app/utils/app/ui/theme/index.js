@@ -67,6 +67,29 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiFormControl: {
+      root: {
+        minWidth: '240px',
+        maxWidth: '240px',
+        '& label.Mui-focused': {
+          color: primary.main,
+        },
+        '& .MuiFormControl-underline:after': {
+          borderBottomColor: primary.main,
+        },
+        '& .MuiFormControl-underline.Mui-error:after': {
+          borderBottomColor: common.error,
+        },
+        '& .MuiFormHelperText-root': {
+          color: common.error,
+        },
+      },
+    },
+    MuiInputLabel: {
+      '& .Mui-error': {
+        color: common.error,
+      },
+    },
     MuiTypography: {
       h1: {
         fontSize: '40px',
